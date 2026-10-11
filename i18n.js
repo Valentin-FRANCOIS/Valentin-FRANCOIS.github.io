@@ -109,7 +109,9 @@ function setPortfolioLanguage(language) {
     }
   });
   document.querySelectorAll('[data-language]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.language === language)));
-  document.querySelectorAll('[data-cv-link]').forEach(link => link.href = language === 'en' ? 'output/pdf/CV-Valentin-Francois-EN-illustre.pdf' : 'output/pdf/CV-Valentin-Francois-FR-illustre.pdf');
+  const cvLanguage = language === 'en' ? 'EN' : 'FR';
+  const cvVersions = {"FR": "7b9af9a30fbf", "EN": "1aeb2f19334c"};
+  document.querySelectorAll('[data-cv-link]').forEach(link => link.href = 'output/pdf/CV-Valentin-Francois-' + cvLanguage + '-illustre.pdf?v=' + cvVersions[cvLanguage]);
   document.querySelectorAll('[data-cv-language]').forEach(badge => badge.textContent = language.toUpperCase());
   // Translate dynamic image descriptions when changing language after a mesh/boat selection.
   const mesh = document.querySelector('[data-mesh][aria-pressed="true"]');
